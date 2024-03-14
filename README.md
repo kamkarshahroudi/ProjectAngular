@@ -1,4 +1,15 @@
-# ToDoList
+# This project is a simple example as Front-end to show the data and edit or add them by an API Restfull project as Back-end at the address below which is written with C#.net core6
+
+Project API Restfull is: https://github.com/kamkarshahroudi/ProjectDotnetCore6
+
+Actually, this project shows the data or makes changes on them by Restful API. 
+
+Therefore, to run it, you need Microsoft visual studio code and also follow the instructions below. 
+
+
+Note: I used the devextreme library, so you must install this library with npm commands.
+
+For example: npm i devextreme
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
 
