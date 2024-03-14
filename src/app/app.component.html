@@ -1,0 +1,189 @@
+
+<button class="btn btn-light BtnAfficherPopup " (click)="Add()"  type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="tooltip" data-placement="left" title="Ajouter une tache">+</button>  <br/><br/>
+
+<!-- Grid Data -->
+<div>
+  <dx-data-grid id="gridContainer" [dataSource]="ToDoLists" [showBorders]="true"class="dx-card wide-card">
+    <dxo-paging [enabled]="true"></dxo-paging>
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+    <dxi-column dataField="id" caption="Id">
+    </dxi-column>
+    <dxi-column dataField="itemName" caption="Name">
+    </dxi-column>
+    <dxi-column dataField="itemDescription" caption="Tach">
+    </dxi-column>
+    <dxi-column dataField="itemStatus" caption="Status">
+    </dxi-column>
+   
+
+    <dxi-column type="buttons" caption="Suuprimer">
+      <dxi-button hint="Supprimer" icon="trash" [onClick]="supprimer"></dxi-button>
+    </dxi-column>
+    <dxi-column type="buttons" caption="Modifier">
+      <dxi-button hint="Modifier" icon="edit" [onClick]="modifier"></dxi-button>
+    </dxi-column>
+
+ 
+  
+  </dx-data-grid>
+</div>
+
+<!-- Popup Edit -->
+<dx-popup title="Modifier To Do List" 
+[showTitle]="true"
+ [width]="900" 
+ [height]="300" 
+ [closeOnOutsideClick]="true"
+[showCloseButton]="true" 
+container=".dx-viewport" 
+ [dragEnabled]="true"
+[(visible)]="selectToDoList"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="field-label" >Item Name </div>
+    </div>
+    
+      <div class="col">
+        <div class="field-label" >Item Description </div>
+      </div>
+      <div class="col">
+        <div class="field-label" >Status </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <dx-text-box #itemName class="" name="item Name"  >
+          <dx-validator >
+            <dxi-validation-rule  [pattern]="namePattern" type="pattern" message="Item name is alphabetical"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+    </div>
+    
+      <div class="col">
+
+        <dx-text-box #itemDescription class="" name="item Name"  >
+       
+        </dx-text-box>
+      </div>
+      <div class="col">
+        <dx-check-box
+      
+        [value]="ValueCheckbox"
+        (onValueChanged)="checkBoxToggled($event)" >
+    </dx-check-box>
+      </div>
+      
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <button (click)="EditeBtn(itemName.value,itemDescription.value)" type="button" class="btn btn-primary">Modifier Lis de la tach</button>
+
+    </div>
+    
+      <div class="col">
+        <button (click)="Cancel()" type="button" class="btn btn-primary">Annuler</button>
+
+      </div>
+      <div class="col">
+
+      </div>
+      
+    </div>
+  </div>
+</dx-popup>
+
+<!-- Popup Add -->
+<dx-popup title="Ajouter Une tache" 
+[showTitle]="true"
+ [width]="900" 
+ [height]="300" 
+ [closeOnOutsideClick]="true"
+[showCloseButton]="true" 
+container=".dx-viewport" 
+ [dragEnabled]="true"
+[(visible)]="AddToDoList"
+>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="field-label" >Item Name</div>
+    </div>
+    
+      <div class="col">
+        <div class="field-label" >Item Description </div>
+      </div>
+      <div class="col">
+        <div class="field-label" >Status </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <dx-text-box #itemNameAdd class="" name="item Name"  >
+          <dx-validator >
+            <dxi-validation-rule  [pattern]="namePattern" type="pattern" message="Item name is alphabetical"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+    </div>
+    
+      <div class="col">
+
+        <dx-text-box #itemDescriptionAdd class="" name="item Name"  >
+        </dx-text-box>
+      </div>
+      <div class="col">
+        <dx-check-box
+      
+        [value]="ValueCheckbox"
+        (onValueChanged)="checkBoxToggled($event)" >
+    </dx-check-box>
+ 
+
+      </div>
+      
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <button (click)="AddBtn(itemNameAdd.value,itemDescriptionAdd.value)" type="button" class="btn btn-primary" >Ajouter Une tach</button>
+   
+
+    </div>
+    
+      <div class="col">
+
+        <button (click)="Cancel()" type="button" class="btn btn-primary">Annuler</button>
+
+      </div>
+      <div class="col">
+       
+
+      </div>
+      
+    </div>
+  </div>
+
+</dx-popup>
